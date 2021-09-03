@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> JQuery </title>
+
+</head>
+
+<!--Libreria de jquery  la version 3.6.0 y en comprimida y no estas 
+se encuentran en libs -->
+<body>
+    <p id="parrafo1">Este es un parrafo de HTML </p>
+    <!--<script src="./libs/jquery-3.6.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script>
+        //funcion anonima 
+      /*  $(document).ready(function () {
+            $("#parrafo1").click(function () {
+                $(this).hide();
+            });
+        });*/
+
+// busca el elemento y dar click
+        //de jquery por el $ arroe funcion 
+        $(() => {
+            $("#parrafo1").click(function () {
+                $(this).hide();
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

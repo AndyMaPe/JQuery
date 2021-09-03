@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Todos postman</title>
+    <link rel="stylesheet" href="todos.css">
+</head>
+
+<body>
+
+    <table id="todos-table">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Completed</th>
+        </tr>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $.ajax({
+                url: `http://jsonplaceholder.typicode.com/todos`,
+                contentType: "application/json",
+                dataTpe: 'json',
+                type: 'get',
+                success: function (todosList) {
+                    todosList.forEach(todo => {
+                        let newRow =
+                            `<tr>
+                                <td>${todo.id}</td>
+                                <td>${todo.title}</td>
+                                <td>${todo.completed}</td> 
+                            </tr>`;
+                        $('#todos-table').append(newRow);
+                    });
+                    $('td:contains(true)').parent().addClass('alt');
+                },
+                error: function (result) {
+                    console.log('La llamada no se pudo completar');
+                    console.log(result);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
