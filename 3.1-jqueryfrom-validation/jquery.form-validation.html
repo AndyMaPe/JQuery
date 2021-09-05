@@ -5,6 +5,7 @@
 
   <meta charset="uft-8">
   <title>From Validation </title>
+
   <link rel="stylesheet" href="jquery.from-validation.css" type="text/css" />
 </head>
 
@@ -34,7 +35,7 @@
     </ul>
   </form>
 
-  <script src="http://code.jquery.com/jquery-3.6.9.js"></script>
+  <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
   <script>
 
 
@@ -53,54 +54,26 @@
 
         errores = [];
 
-        if(nombre.length == 0 )
-        agregaError('nombre');
-        if(mail.length == 0 )
-        agregaError('correo');
-        if(msg.length == 0 )
-        agregaError('mensaje');
+        $("#frmEjemplo inut,frmEjemplo textarea").each(function () {
+          if (!$(this).val());
+          agregarError($(this).attr("name"));
+        });
 
         $('#errores').empty();
         errores.forEach((errorText) => {
-          let newError = `<li>errorText</li>`;
+          let newError = `<li>${errorText}</li>`;;
           $("#errores").append(newError);
         });
 
-
-        if(errores.length==0)
-        alert('Mensaje enviado');
+        if (errores.length == 0)
+          alert('Mensaje enviado');
       }
-      function agregarError(campo){
+      
+      function agregarError(campo) {
         errores.push(`Falta agregar el ${campo}`);
       }
     });
+  
   </script>
 </body>
 </html>
-
-<!--
-$("#btnSend").click(function (event) {
-         validateDta();
-         event.preventDefault();
-       });
-   
-       function validateData() {
-         let name = $("name").val(),
-           mail = $("#mail").val(),
-           msg = $("#msg").val();
-   
-         if (msjValidate(name, "nombre") && msjValidete(mail, "correo") && msjValidate(msg, "Mensaje"))
-           alert("Mensaje enviado correctamente");
-       }
-   
-         function msjValidate(text, name) {
-           if (text != "") {
-             return
-           } else {
-               alerta("Favor de llenar el campo" + name);
-             return false;
-           }
-         }*/
-
-
--->

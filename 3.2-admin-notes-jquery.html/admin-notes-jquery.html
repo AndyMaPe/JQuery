@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Administrador de notas</title>
+    <link rel="stylesheet" href="./jquery.from-validation.css">
+</head>
+
+
+<body>
+    <form id="from-id" method="post">
+        <ul>
+            <li>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="user_name">
+            </li>
+            <li>
+                <label for="content">Content:</label>
+                <input type="email" id="content" name="user_email">
+            </li>
+            <li class="button">
+                <button id="btn-send" type="submit">Send note</button>
+            </li>
+        </ul>
+    </form>
+
+
+    <input id="btnBuscar" type="button" value="Mostrar valores " <h3>Administrador de notas </h3>
+    <table id="notes-table">
+        <tr>
+            <th>Titulo</th>
+            <th>Contenido</th>
+
+
+        </tr>
+        <table></table>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script>
+
+            $(document).ready(function () {
+                $.ajax({
+                    url: `http://localhost:3000/notes`,
+                    contentType: "application/json",
+                    dataTpe: 'json',
+                    type: 'get',
+                    success: function (notesList) {
+                        notesList.forEach(note => {
+                            let newRow =
+                                `<tr>
+                                <td>${note.id}</td>
+                                <td>${note.title}</td>
+                                <td>${note.content}</td>
+                                <td>
+                                    <a href ="#" class= "modificarLink">Modificar/a>
+                                    <a href ="#" class= "eliminarLink">Eliminar/a>
+                                    </td>
+                            </tr>`;
+                            $('#notes-table').append(newRow);
+                        });
+                        // $('td:contains(true)').parent().addClass('alt');
+                    },
+                    error: function (result) {
+                        console.log('La llamada no se pudo completar');
+                        console.log(result);
+                    }
+                });
+                $("a").click(function (event) {
+                    event.preventDefault();
+                    alert('eliminar');
+                });
+            });
+
+            //Post
+            $(document).ready(function () {
+                $.ajax({
+                    url: `http://localhost:3000/notes`,
+                    contentType: "application/json",
+                    dataTpe: 'json',
+                    type: 'post',
+                    success: function (notesList) {
+                        notesList.forEach(note => {
+                            let newRow =
+                                `<tr>
+                                <td>${note.id}</td>
+                                <td>${note.title}</td>
+                                <td>${note.content}</td>
+                                <td>
+                                    <a href ="#" class= "modificarLink">Modificar/a>
+                                    <a href ="#" class= "eliminarLink">Eliminar/a>
+                                    </td>
+                            </tr>`;
+                            $('#notes-table').append(newRow);
+                        });
+                        // $('td:contains(true)').parent().addClass('alt');
+                    },
+                    error: function (result) {
+                        console.log('La llamada no se pudo completar');
+                        console.log(result);
+                    }
+                });
+                $("a").click(function (event) {
+                    event.preventDefault();
+                    alert('eliminar');
+                });
+            });
+
+
+
+
+
+            //UPDATE
+            $('a.update')
+                .click(function (evnet) {
+                    event.preventDefault();
+                    let id_update = $(this).attr('noteId');
+                    console.log("Id btenido" + id_updaa);
+                    let valor1 = prompt("Ingresa el titulo");
+                    let valor2 = prompt("Ingresa el contenido");
+                    console.log("title" + valor1);
+                    console.log("title" + valor2);
+
+                });
+
+            $(document).ready(function () {
+                $.ajax({
+                    url: `http://localhost:3000/notes/${id_update}`,
+                    contentType: "application/json",
+                    dataTpe: 'json',
+                    type: 'put',
+                    success: function (notesList) {
+                        notesList.forEach(note => {
+                            let newRow =
+                                `<tr>
+                                <td>${valor1}</td>
+                                <td>${valor2}</td>
+                                <td>${note.content}</td>
+                                   </td>
+                            </tr>`;
+                            $('#notes-table').append(newRow);
+                        });
+                        // $('td:contains(true)').parent().addClass('alt');
+                    },
+                    error: function (result) {
+                        console.log('La llamada no se pudo completar');
+                        console.log(result);
+                    }
+                });
+
+            });
+
+
+
+
+
+            //DELETE
+
+
+
+            $(document).ready(function () {
+                $.ajax({
+                    url: `http://localhost:3000/notes${id_delete}`,
+                    contentType: "application/json",
+                    dataTpe: 'json',
+                    type: 'delete',
+                    success: function (notesList) {
+                        event.preventDefault();
+                        let id_delete = $(this).attr('noteId');
+                        console.log("Mediante Id Se hara el siguiente delete" + id_delete);
+                        notesList.forEach(note => {
+                            let newRow =
+                                `<tr>
+                                <td>${note.id}</td>
+
+                            </tr>`;
+                            $('#notes-table').append(newRow);
+                        });
+                        // $('td:contains(true)').parent().addClass('alt');
+                    },
+                    error: function (result) {
+                        console.log('La llamada no se pudo completar');
+                        console.log(result);
+                    }
+                });
+                $("a").click(function (event) {
+                    event.preventDefault();
+                    alert('eliminar');
+                });
+            });
+        </script>
+
+</body>
+
+</html>
